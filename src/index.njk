@@ -1,0 +1,84 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+  <div id="title-header" class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+      <h1 id="textillate" class="display-2">Gulpon</h1>
+      <p class="lead">A Flexible Static Site Generator.</p>
+      <a class="btn btn-success animated shake"
+         href="https://github.com/tsubo/gulpon">Getting Started</a>
+    </div>
+  </div>
+
+  <section id="function" class="mb-4">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md">
+          <div class="card mb-4">
+            <div class="py-4">
+              <i class="fab fa-markdown fa-8x"></i>
+            </div>
+            <div class="card-body">
+              <h2>Markdown</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="card mb-4">
+            <div class="py-4">
+              <i class="fas fa-code fa-8x"></i>
+            </div>
+            <div class="card-body">
+              <h2>Template</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="card mb-4">
+            <div class="py-4">
+              <i class="fab fa-gulp fa-8x"></i>
+            </div>
+            <div class="card-body">
+              <h2>Gulp</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.js"></script>
+<script>
+$(function(){
+  $('#textillate').textillate({
+    in: {
+      effect: 'rollIn'
+    },
+    out: {
+      effect: 'bounce'
+    }
+  });
+  $('#textillate').on('inAnimationEnd.tlt', function() {
+    $(this).textillate('out');
+  });
+});
+</script>
+{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/brands.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+  <style>
+    .animated.shake {
+      animation-delay: 4s;
+    }
+    .card {
+      opacity: 0.9;
+    }
+  </style>
+{% endblock %}

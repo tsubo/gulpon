@@ -1,0 +1,19 @@
+menu:
+  left: [
+    { type: link, path: /, label: Home },
+    { type: link, path: /page1.html, label: Page1 },
+    { type: link, path: /page2.html, label: Page2 }
+  ]
+  right: [
+    { type: link, path: /about.html, label: About },
+    {
+      type: dropdown,
+      label: Dropdown,
+      alignment: right,
+      items: [
+        { type: link, path: /directory/page1.html, label: Page1 },
+        { type: divider },
+        { type: link, path: /directory/page2.html, label: Page2 },
+      ]
+    }
+  ]

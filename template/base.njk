@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+      {% if title %}
+        {{ title }} | {{ site.name }}
+      {% else %}
+        {{ site.name }}
+      {% endif %}
+    </title>
+    <link rel="stylesheet" href="/css/bundle.css">
+    {% block style %}{% endblock %}
+  </head>
+
+  <body>
+    {% include "partial/navbar.njk" %}
+
+    {% block main %}
+      {% block content %}
+        {{ markdown | safe }}
+      {% endblock %}
+    {% endblock %}
+
+    {% block footer %}{% endblock %}
+
+    <script src="/js/bundle.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    {% block script %}{% endblock %}
+  </body>
+
+</html>

@@ -1,0 +1,9 @@
+{% if item.type == "link" %}
+  <li class="nav-item">
+    <a class="nav-link" href="{{ item.path }}">{{ item.label }}</a>
+  </li>
+{% endif %}
+
+{% if item.type == "dropdown" %}
+  {% include 'partial/menu_dropdown.njk' %}
+{% endif %}

@@ -1,0 +1,22 @@
+.navbar {
+  background-color: #cf4647;
+}
+
+.navbar-dark {
+  .navbar-nav {
+    .nav-link {
+      color: rgba(255, 255, 255, 0.75);
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+
+#title-header {
+  background-color: #cf4647;
+  opacity: 0.95;
+  .container {
+    color: white;
+  }
+}
