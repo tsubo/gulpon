@@ -4,9 +4,11 @@ A Flexible Static Site Generator.
 
 ## Install
 
+```
 git clone https://github.com/tsubo/gulpon.git
 cd gulpon
 npm install
+```
 
 ## Directory Structure
 
