@@ -1,10 +1,14 @@
 const gulp = require('gulp')
-const njkMd = require('gulp-nunjucks-md')
+const through = require('through2')
+const nunjucks = require('nunjucks')
+const marked = require('marked')
+const highlight = require('highlight.js')
+const unescape = require('lodash.unescape')
+const fm = require('front-matter')
 const gulpData = require('gulp-data')
 const beautify = require('gulp-html-beautify')
 const rename = require('gulp-rename')
 const plumber = require('gulp-plumber')
-const highlight = require('highlight.js')
 const notifier = require('node-notifier')
 const webpack = require('webpack')
 const webpackStream = require('webpack-stream')
@@ -13,6 +17,8 @@ const runSequence = require('run-sequence')
 const del = require('del')
 const glob = require('glob')
 const yaml = require('yamljs')
+const path = require('path')
+const PluginError = require('plugin-error')
 
 /**
  * init
@@ -62,7 +68,71 @@ gulp.task('clean', cb => {
 })
 
 gulp.task('html', () => {
-  let data = getData()
+  const data = getData()
+
+  const mdRender = new marked.Renderer()
+  mdRender.text = text => unescape(text)
+  marked.setOptions({
+    render: mdRender,
+    highlight: code => {
+      return highlight.highlightAuto(code).value
+    },
+  })
+  const njkEnv = new nunjucks.Environment(
+    new nunjucks.FileSystemLoader(PATHS.templateDir),
+  )
+
+  function frontMatter(file, enc, cb) {
+    const content = fm(file.contents.toString())
+
+    // Don't use front matter when using Nunjucks templates
+    const isNjk = /\.njk/.test(path.extname(file.path))
+    if (!isNjk) {
+      file.data = { ...file.data, ...content.attributes }
+    }
+
+    file.contents = new Buffer.from(content.body)
+    cb(null, file)
+  }
+
+  function renderMarkdown(file, enc, cb) {
+    const isMarkdown = /\.md/.test(path.extname(file.path))
+    if (isMarkdown) {
+      if (!file.data.hasOwnProperty('layout')) {
+        this.emit(
+          'error',
+          new PluginError(
+            'gulp task: html.renderMarkdown',
+            'Layout not declared in front-matter',
+          ),
+        )
+      }
+      let contents = marked(file.contents.toString())
+      contents = `
+        {% extends '${file.data.layout}' %}
+        {% block content %}
+          ${contents}
+        {% endblock %}`
+      file.contents = new Buffer.from(contents)
+    }
+    cb(null, file)
+  }
+
+  function renderNunjucks(file, enc, cb) {
+    try {
+      file.contents = Buffer.from(
+        njkEnv.renderString(file.contents.toString(), file.data),
+      )
+    } catch (err) {
+      this.emit(
+        'error',
+        new PluginError('gulp task: html.renderNunjucks', err, {
+          fileName: file.path,
+        }),
+      )
+    }
+    cb(null, file)
+  }
 
   return gulp
     .src([`${PATHS.srcDir}/**/*.{html,njk,md}`])
@@ -71,22 +141,15 @@ gulp.task('html', () => {
         errorHandler: errorHandler,
       }),
     )
+    .pipe(through.obj(frontMatter))
     .pipe(
       gulpData(file => {
+        // Inject data from yaml or json files
         return data
       }),
     )
-    .pipe(
-      njkMd({
-        path: [PATHS.templateDir],
-        extLayout: '',
-        marked: {
-          highlight: code => {
-            return highlight.highlightAuto(code).value
-          },
-        },
-      }),
-    )
+    .pipe(through.obj(renderMarkdown))
+    .pipe(through.obj(renderNunjucks))
     .pipe(
       beautify({
         indent_size: 2,
