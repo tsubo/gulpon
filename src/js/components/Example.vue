@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card card-default">
-          <div class="card-header">Example Vue Component</div>
+          <div class="card-header">Hello, Vue Component</div>
 
           <div class="card-body">
             I'm an example vue component.

@@ -1,21 +1,19 @@
 menu:
   left: [
-    { type: link, path: /, label: Home },
     { type: link, path: /page1.html, label: Page1 },
     { type: link, path: /page2.html, label: Page2 }
-    { type: link, path: /vue.html, label: Vue }
-    { type: link, path: /vue-comp.html, label: Component }
+    { type: link, path: /md-format.html, label: MD Format }
+    { type: link, path: /gallery.html, label: Gallery }
   ]
   right: [
-    { type: link, path: /about.html, label: About },
     {
       type: dropdown,
-      label: Dropdown,
+      label: Advanced,
       alignment: right,
       items: [
-        { type: link, path: /directory/page1.html, label: Page1 },
+        { type: link, path: /vue/hello-vue.html, label: Hello Vue },
         { type: divider },
-        { type: link, path: /directory/page2.html, label: Page2 },
+        { type: link, path: /vue/hello-vue-comp.html, label: Vue Component },
       ]
     }
   ]
