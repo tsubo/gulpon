@@ -12,9 +12,3 @@ window.$ = window.jQuery = jQuery
 window.Popper = Popper
 window.Vue = Vue
 window.axios = axios
-
-// css
-import '../css/index.css'
-
-// saas
-import '../sass/index.scss'
