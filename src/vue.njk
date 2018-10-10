@@ -1,0 +1,53 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+  {% raw %}
+    <div id="app">
+      <div id="title-header" class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4" v-cloak="v-cloak">{{ title }}</h1>
+          <p class="lead" v-cloak="v-cloak">{{ desc }}</p>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <form class="col-md-8">
+            <div class="form-group row">
+              <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+              <div class="col-sm-10">
+                <input v-model="title" type="text" class="form-control" id="inputTitle">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputiDesc" class="col-sm-2 col-form-label">Description</label>
+              <div class="col-sm-10">
+                <input v-model="desc" type="text" class="form-control" id="inputDesc">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endraw %}
+{% endblock %}
+
+{% block script %}
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        title: 'Hello, Vue!',
+        desc: 'This is sample for vue.'
+      }
+    })
+  </script>
+{% endblock %}
+
+{% block style %}
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+{% endblock %}
