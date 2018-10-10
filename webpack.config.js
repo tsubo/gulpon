@@ -2,6 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   mode: 'production',
@@ -27,10 +28,22 @@ module.exports = {
           'sass-loader',
         ],
       },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+        },
+      },
     ],
   },
 
   resolve: {
+    extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
     },
@@ -40,6 +53,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '../css/bundle.css',
     }),
+    new VueLoaderPlugin(),
   ],
 
   optimization: {
@@ -55,6 +69,6 @@ module.exports = {
 
   performance: {
     maxEntrypointSize: 1000000,
-    maxAssetSize: 800000,
+    maxAssetSize: 1000000,
   },
 }

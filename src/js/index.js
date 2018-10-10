@@ -12,3 +12,6 @@ window.$ = window.jQuery = jQuery
 window.Popper = Popper
 window.Vue = Vue
 window.axios = axios
+
+import Example from './components/Example.vue'
+Vue.component('example-component', Example)

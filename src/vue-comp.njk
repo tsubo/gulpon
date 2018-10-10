@@ -1,0 +1,15 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+  <div id="app" class="my-4">
+    <example-component />
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+{% endblock %}

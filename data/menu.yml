@@ -4,6 +4,7 @@ menu:
     { type: link, path: /page1.html, label: Page1 },
     { type: link, path: /page2.html, label: Page2 }
     { type: link, path: /vue.html, label: Vue }
+    { type: link, path: /vue-comp.html, label: Component }
   ]
   right: [
     { type: link, path: /about.html, label: About },
