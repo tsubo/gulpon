@@ -14,28 +14,26 @@ marked.setOptions({
   },
 })
 
-const renderMarkdown = file => {
-  const isMarkdown = /\.md/.test(path.extname(file.path))
-  if (isMarkdown) {
-    if (!file.data.hasOwnProperty('layout')) {
-      this.emit(
-        'error',
-        new PluginError('markdown', 'Layout undefined in front-matter'),
-      )
-    }
-    let contents = marked(file.contents.toString())
-    contents = `
-      {% extends '${file.data.layout}' %}
-      {% block content %}
-        ${contents}
-      {% endblock %}`
-    file.contents = new Buffer.from(contents)
-  }
-  return file
-}
+const renderMarkdown = function(file) {}
 
 module.exports = function() {
   return through.obj(function(file, encoding, callback) {
-    callback(null, renderMarkdown(file))
+    const isMarkdown = /\.md/.test(path.extname(file.path))
+    if (isMarkdown) {
+      if (!file.data.hasOwnProperty('layout')) {
+        this.emit(
+          'error',
+          new PluginError('markdown', 'Layout undefined in front-matter'),
+        )
+      }
+      let contents = marked(file.contents.toString())
+      contents = `
+        {% extends '${file.data.layout}' %}
+        {% block content %}
+          ${contents}
+        {% endblock %}`
+      file.contents = new Buffer.from(contents)
+    }
+    callback(null, file)
   })
 }
