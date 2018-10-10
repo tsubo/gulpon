@@ -20,6 +20,8 @@ const yaml = require('yamljs')
 const path = require('path')
 const PluginError = require('plugin-error')
 
+process.on('unhandledRejection', console.dir)
+
 /**
  * init
  */
@@ -103,7 +105,7 @@ gulp.task('html', () => {
           'error',
           new PluginError(
             'gulp task: html.renderMarkdown',
-            'Layout not declared in front-matter',
+            'Layout undefined in front-matter',
           ),
         )
       }
