@@ -1,11 +1,9 @@
 const gulp = require('gulp')
-const render = require('gulp-nunjucks-render')
+const njkMd = require('gulp-nunjucks-md')
 const gulpData = require('gulp-data')
 const beautify = require('gulp-html-beautify')
-const frontMatter = require('front-matter')
+const rename = require('gulp-rename')
 const plumber = require('gulp-plumber')
-const notify = require('gulp-notify')
-const marked = require('marked')
 const highlight = require('highlight.js')
 const notifier = require('node-notifier')
 const webpack = require('webpack')
@@ -15,7 +13,6 @@ const runSequence = require('run-sequence')
 const del = require('del')
 const glob = require('glob')
 const yaml = require('yamljs')
-const pathUtil = require('path')
 
 /**
  * init
@@ -29,12 +26,6 @@ const PATHS = {
   dataDir: './data',
   destDir: './public',
 }
-
-marked.setOptions({
-  highlight: code => {
-    return highlight.highlightAuto(code).value
-  },
-})
 
 /**
  * function
@@ -50,12 +41,16 @@ const getData = () => {
   return data
 }
 
-function swallowError(error) {
+function errorHandler(error) {
   console.log(error.toString())
   notifier.notify({
-    title: 'Error',
+    title: error.plugin,
     message: error.message,
   })
+}
+
+function swallowError(error) {
+  errorHandler(error)
   this.emit('end')
 }
 
@@ -70,40 +65,37 @@ gulp.task('html', () => {
   let data = getData()
 
   return gulp
-    .src([`${PATHS.srcDir}/**/*.{njk,md}`])
+    .src([`${PATHS.srcDir}/**/*.{html,njk,md}`])
     .pipe(
       plumber({
-        errorHandler: notify.onError('<%= error.message %>'),
+        errorHandler: errorHandler,
       }),
     )
     .pipe(
       gulpData(file => {
-        // markdown
-        if (pathUtil.extname(file.path) == '.md') {
-          // front matter
-          const content = frontMatter(String(file.contents))
-          data = { ...data, ...content.attributes }
-          if (!data.layout) {
-            throw new Error(`Missing "layout" in Front matter => ${file.path}`)
-          }
-
-          // compile
-          const html = marked(content.body)
-          data = { ...data, markdown: html }
-          file.contents = Buffer.from(`{% extends '${data.layout}' %}`)
-        }
         return data
       }),
     )
     .pipe(
-      render({
+      njkMd({
         path: [PATHS.templateDir],
+        extLayout: '',
+        marked: {
+          highlight: code => {
+            return highlight.highlightAuto(code).value
+          },
+        },
       }),
     )
     .pipe(
       beautify({
         indent_size: 2,
         preserve_newlines: false,
+      }),
+    )
+    .pipe(
+      rename({
+        extname: '.html',
       }),
     )
     .pipe(gulp.dest(PATHS.destDir))
@@ -113,7 +105,7 @@ gulp.task('webpack', () => {
   return webpackStream(webpackConfig, webpack)
     .pipe(
       plumber({
-        errorHandler: notify.onError('Error: <%= error.message %>'),
+        errorHandler: errorHandler,
       }),
     )
     .pipe(gulp.dest(`${PATHS.destDir}/js`))
@@ -124,7 +116,7 @@ gulp.task('img', () => {
     .src(`${PATHS.imgDir}/**/*`)
     .pipe(
       plumber({
-        errorHandler: notify.onError('Error: <%= error.message %>'),
+        errorHandler: errorHandler,
       }),
     )
     .pipe(gulp.dest(`${PATHS.destDir}/img`))

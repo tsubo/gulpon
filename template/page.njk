@@ -4,8 +4,6 @@
   {% include 'partial/title_header.njk' %}
 
   <div class="container mt-4">
-    {% block content %}
-      {{ markdown | safe }}
-    {% endblock %}
+    {% block content %}{% endblock %}
   </div>
 {% endblock %}

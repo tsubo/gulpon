@@ -1,7 +1,7 @@
 ---
 layout: page.njk
 title: Page2
-subtitle: Eu dolor ex est duis do.
+description: Eu dolor ex est duis do.
 ---
 
 ## This is Markdown

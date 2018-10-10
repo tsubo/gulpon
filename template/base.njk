@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-      {% if title %}
-        {{ title }} | {{ site.name }}
+      {% if page.title %}
+        {{ page.title }} | {{ site.name }}
       {% else %}
         {{ site.name }}
       {% endif %}
@@ -20,9 +20,7 @@
     {% include "partial/navbar.njk" %}
 
     {% block main %}
-      {% block content %}
-        {{ markdown | safe }}
-      {% endblock %}
+      {% block content %}{% endblock %}
     {% endblock %}
 
     {% block footer %}{% endblock %}
