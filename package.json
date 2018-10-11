@@ -5,6 +5,7 @@
   "author": "tsubo",
   "license": "MIT",
   "scripts": {
+    "production": "NODE_MODE=production npx gulp",
     "build": "npx gulp",
     "watch": "npx gulp watch",
     "server": "npx gulp server",

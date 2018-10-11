@@ -4,8 +4,10 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+const mode = process.env.NODE_MODE || 'development'
+
 module.exports = {
-  mode: 'production',
+  mode: mode,
 
   entry: './src/js/index.js',
   output: {
