@@ -5,16 +5,16 @@ const marked = require('marked')
 const path = require('path')
 const PluginError = require('plugin-error')
 
-const mdRender = new marked.Renderer()
-mdRender.text = text => unescape(text)
-marked.setOptions({
-  render: mdRender,
-  highlight: code => {
-    return highlight.highlightAuto(code).value
-  },
-})
-
 module.exports = function() {
+  const mdRender = new marked.Renderer()
+  mdRender.text = text => unescape(text)
+  marked.setOptions({
+    render: mdRender,
+    highlight: code => {
+      return highlight.highlightAuto(code).value
+    },
+  })
+
   return through.obj(function(file, encoding, callback) {
     const isMarkdown = /\.md/.test(path.extname(file.path))
     if (isMarkdown) {

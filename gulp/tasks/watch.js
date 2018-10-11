@@ -2,7 +2,6 @@ const config = require('../config')
 const util = require('../util')
 const gulp = require('gulp')
 
-// FIXME: When I update template, BrowserSync doesn't sync new template. Fix this!
 gulp.task('watch', ['build'], () => {
   gulp
     .watch(`${config.path.srcDir}/**/*.{html,njk,md}`, ['html'])
