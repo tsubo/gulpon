@@ -1,5 +1,5 @@
 site:
   name: Gulpon
   meta:
-    description: 'A Flexible Static Site Generator'
-    keywards: 'Static Site,Generatior,node,gulp,nunjucks,markdowni,template'
+    description: A Flexible Static Site Generator
+    keywords: Static Site,Generatior,node,gulp,nunjucks,markdown,template,bootstrap,vue
