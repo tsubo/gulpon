@@ -11,9 +11,6 @@ const frontMatter = require('../plugin/front-matter')
 const markdown = require('../plugin/markdown')
 const nunjucks = require('../plugin/nunjucks')
 
-/**
- * function
- */
 const getData = () => {
   let data = {}
   glob // yaml
@@ -25,9 +22,7 @@ const getData = () => {
   return data
 }
 
-/**
- * tasks
- */
+// TODO: Add TOC parser
 gulp.task('html', () => {
   const data = getData()
 

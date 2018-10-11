@@ -5,6 +5,7 @@ const marked = require('marked')
 const path = require('path')
 const PluginError = require('plugin-error')
 
+// FIXME: Display list with number is wrong. Take a look!
 const mdRender = new marked.Renderer()
 mdRender.text = text => unescape(text)
 marked.setOptions({

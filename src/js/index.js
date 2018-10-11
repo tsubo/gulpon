@@ -13,5 +13,7 @@ window.Popper = Popper
 window.Vue = Vue
 window.axios = axios
 
+// TODO: Add wordpress rest client components.
+// TODO: Add local blog components.
 import Example from './components/Example.vue'
 Vue.component('example-component', Example)
