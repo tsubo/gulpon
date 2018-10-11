@@ -23,7 +23,9 @@
       {% block content %}{% endblock %}
     {% endblock %}
 
-    {% block footer %}{% endblock %}
+    {% block footer %}
+      {% include "partial/footer.njk" %}
+    {% endblock %}
 
     <script src="/js/bundle.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
