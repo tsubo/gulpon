@@ -9,7 +9,7 @@ const mode = process.env.NODE_MODE || 'development'
 module.exports = {
   mode: mode,
 
-  entry: './src/js/index.js',
+  entry: ['./src/js/index.js', './src/sass/index.js'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/js'),
