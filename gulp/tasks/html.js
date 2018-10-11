@@ -23,6 +23,7 @@ const getData = () => {
 }
 
 // TODO: Add TOC parser
+// TODO: Add PWA
 gulp.task('html', () => {
   const data = getData()
 
