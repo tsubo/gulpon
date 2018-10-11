@@ -14,8 +14,6 @@ marked.setOptions({
   },
 })
 
-const renderMarkdown = function(file) {}
-
 module.exports = function() {
   return through.obj(function(file, encoding, callback) {
     const isMarkdown = /\.md/.test(path.extname(file.path))
