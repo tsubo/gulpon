@@ -17,7 +17,7 @@ const nunjucks = require('../plugin/nunjucks')
 const getData = () => {
   let data = {}
   glob // yaml
-    .sync(`${config.path.dataDir}/**/*.yml`)
+    .sync(`${config.path.dataDir}/**/*.{yml,yaml}`)
     .forEach(file => (data = { ...data, ...yaml.load(file) }))
   glob // json
     .sync(`${config.path.dataDir}/**/*.json`)
