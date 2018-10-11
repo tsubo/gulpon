@@ -1,8 +1,44 @@
-{% extends 'base.njk' %}
+{% extends 'page.njk' %}
+
+{% set 'title' = 'Awesome Vue Component!' %}
+{% set 'description' = 'You can use vue single file component.' %}
 
 {% block content %}
   <div id="app" class="my-4">
-    <example-component />
+    <example-component/>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      Example.vue
+      <pre><code class="html">
+{%- filter escape -%}
+<template>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card card-default">
+          <div class="card-header">hello, vue component</div>
+
+          <div class="card-body">
+            i'm an example of vue single file component.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    mounted() {
+      console.log('component mounted.')
+    }
+  }
+</script>
+{%- endfilter -%}
+      </code></pre>
+    </div>
   </div>
 {% endblock %}
 
