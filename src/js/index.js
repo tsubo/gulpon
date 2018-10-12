@@ -20,8 +20,8 @@ Vue.component('example-component', Example)
 
 // FIXME: SPA 用の js ファイルを別ファイルに切り出せないか？
 // Vue Single Page Application
-import WpNews from './page/WpNews.vue'
-Vue.component('wp-news', WpNews)
+import WpPosts from './page/WpPosts.vue'
+Vue.component('wp-posts', WpPosts)
 
 Vue.use(VueRouter)
 

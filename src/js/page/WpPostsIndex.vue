@@ -2,7 +2,7 @@
   <div>
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <router-link :to="{ name: 'wp-news-post', params: { slug: post.slug }}">
+        <router-link :to="{ name: 'wp-posts-show', params: { slug: post.slug }}">
           {{ post.title.rendered }}
         </router-link>
       </li>
