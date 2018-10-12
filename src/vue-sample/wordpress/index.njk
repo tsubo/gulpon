@@ -1,0 +1,18 @@
+{% extends 'page.njk' %}
+
+{% set 'title' = 'Wordpress.org News' %}
+{% set 'description' = 'An example of wordpress api client' %}
+
+{% block content %}
+  <div id="app">
+    <wp-news />
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+{% endblock %}

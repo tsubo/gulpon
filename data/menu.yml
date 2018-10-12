@@ -12,8 +12,9 @@ menu:
       alignment: right,
       items: [
         { type: link, path: /vue-sample/hello-vue.html, label: Hello Vue },
-        { type: divider },
         { type: link, path: /vue-sample/hello-vue-comp.html, label: Vue Component },
+        { type: divider },
+        { type: link, path: /vue-sample/wordpress/, label: Wordpress },
       ]
     }
   ]
