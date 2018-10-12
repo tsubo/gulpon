@@ -3,7 +3,6 @@ import Popper from 'popper.js'
 import jQuery from 'jquery'
 import hljs from 'highlight.js/lib/index'
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import axios from 'axios'
 import 'bootstrap'
 import './site'
@@ -22,8 +21,6 @@ Vue.component('example-component', Example)
 // Vue Single Page Application
 import WpPosts from './page/WpPosts.vue'
 Vue.component('wp-posts', WpPosts)
-
-Vue.use(VueRouter)
 
 // TODO: Add wordpress rest client components.
 // TODO: Add local blog components.

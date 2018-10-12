@@ -16,7 +16,6 @@
   import 'vue-loading-overlay/dist/vue-loading.css'
 
   const axios = require('axios')
-  const url = 'https://wordpress.org/news/wp-json/wp/v2/posts'
 
   export default {
     components: {
@@ -28,13 +27,13 @@
         isLoading: false
       }
     },
-    mounted() {
+    created() {
       this.getPosts()
     },
     methods: {
       getPosts() {
         this.isLoading = true
-        axios.get(url)
+        axios.get(this.$store.state.apiUrl)
           .then(res => {
             this.posts = res.data
           })

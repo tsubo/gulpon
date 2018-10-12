@@ -16,8 +16,8 @@
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
 
+  // FIXME: post データが取得できない時は 404 を返す
   const axios = require('axios')
-  const url = 'https://wordpress.org/news/wp-json/wp/v2/posts'
 
   export default {
     components: {
@@ -29,7 +29,7 @@
         isLoading: false
       }
     },
-    mounted() {
+    created() {
       this.getPost(this.$route.params.slug)
     },
     beforeRouteUpdate (to, from, next) {
@@ -39,7 +39,7 @@
     methods: {
       getPost(slug) {
         this.isLoading = true
-        axios.get(`${url}?slug=${slug}`)
+        axios.get(`${this.$store.state.apiUrl}?slug=${slug}`)
           .then(res => {
             console.log(res)
             this.post = res.data[0]
