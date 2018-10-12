@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- FIXME: 見栄えをよくする -->
     <template v-if="post">
       <h1>{{ post.title.rendered }}</h1>
       <p>slug: {{ $route.params.slug }}</p>
@@ -41,7 +42,6 @@
         this.isLoading = true
         axios.get(`${this.$store.state.apiUrl}?slug=${slug}`)
           .then(res => {
-            console.log(res)
             this.post = res.data[0]
           })
           .catch(err => {

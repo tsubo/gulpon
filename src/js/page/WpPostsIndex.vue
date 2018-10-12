@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- FIXME: 見栄えをよくする -->
     <ul>
       <li v-for="post in posts" :key="post.id">
         <router-link :to="{ name: 'wp-posts-show', params: { slug: post.slug }}">
