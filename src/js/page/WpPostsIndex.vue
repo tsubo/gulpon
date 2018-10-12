@@ -1,18 +1,30 @@
 <template>
   <div>
-    <!-- FIXME: 見栄えをよくする -->
-    <ul>
-      <li v-for="post in posts" :key="post.id">
-        <router-link :to="{ name: 'wp-posts-show', params: { slug: post.slug }}">
-          {{ post.title.rendered }}
-        </router-link>
-      </li>
-    </ul>
+    <title-header title="WordPress News" description="An Example of WordPress REST API Client"></title-header>
+
+    <div class="container">
+      <ul class="list-unstyled">
+        <li v-for="post in posts" :key="post.id" class="media my-4">
+          <div class="media-body">
+            <router-link :to="{ name: 'wp-posts-show', params: { slug: post.slug }}">
+              <h4 class="mt-0 mb-1">
+                {{ post.title.rendered }}<span class="date"> - {{ post.date | date }}</span>
+              </h4>
+            </router-link>
+            <p v-html="summary(post.excerpt.rendered)"></p>
+          </div>
+        </li>
+      </ul>
+
+      <p><a class="btn btn-info btn-sm" :href="$store.state.apiUrl">API</a></p>
+    </div>
+
     <loading :active.sync="isLoading" color="white" background-color="black"></loading>
   </div>
 </template>
 
 <script>
+  import TitleHeader from '../component/TitleHeader'
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
 
@@ -20,6 +32,7 @@
 
   export default {
     components: {
+      TitleHeader,
       Loading
     },
     data: () => {
@@ -27,6 +40,11 @@
         posts: {},
         isLoading: false
       }
+    },
+    filters: {
+      date: (str) => {
+        return str.replace(/-/g, '/').split('T')[0]
+      },
     },
     created() {
       this.getPosts()
@@ -44,7 +62,22 @@
           .finally(() => {
             this.isLoading = false
           })
+      },
+      summary: (str) => {
+        if (str.length <= 200) {
+          return str
+        }
+        return str.substr(0, 200) + '...'
       }
     }
   }
 </script>
+
+<style>
+.date {
+  color: darkgray;
+  font-size: 1.4rem;
+}
+</style>
+
+

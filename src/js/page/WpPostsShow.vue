@@ -1,12 +1,14 @@
 <template>
   <div>
-    <!-- FIXME: 見栄えをよくする -->
     <template v-if="post">
-      <h1>{{ post.title.rendered }}</h1>
-      <p>slug: {{ $route.params.slug }}</p>
-      <a :href="post.link">{{ post.link }}</a>
-      <hr>
-      <div v-html="post.content.rendered"></div>
+      <title-header :title="title" :description="description"></title-header>
+
+      <div class="container">
+        <hr>
+        <div v-html="content"></div>
+
+        <p><a class="btn btn-info btn-sm" :href="getApiUrl()">API</a></p>
+      </div>
     </template>
 
     <loading :active.sync="isLoading" color="white" background-color="black"></loading>
@@ -14,33 +16,57 @@
 </template>
 
 <script>
+  import TitleHeader from '../component/TitleHeader'
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
 
-  // FIXME: post データが取得できない時は 404 を返す
   const axios = require('axios')
 
   export default {
     components: {
+      TitleHeader,
       Loading
     },
     data: () => {
       return {
+        slug: '',
         post: null,
         isLoading: false
       }
     },
+    computed: {
+      title() {
+        return this.post ? this.post.title.rendered : ''
+      },
+      content() {
+        return this.post ? this.post.content.rendered : ''
+      },
+      description() {
+        if (!this.post) {
+          return ''
+        }
+        const date = this.post.date.replace(/-/g, '/').split('T')[0]
+        let authors = this.post._embedded.author.map((item) => item.name)
+        authors = authors.join(',')
+        return `${date} - ${authors}`
+      },
+    },
     created() {
-      this.getPost(this.$route.params.slug)
+      this.slug = this.$route.params.slug
+      this.getPost()
     },
     beforeRouteUpdate (to, from, next) {
-      this.getPost(to.params.slug)
+      this.slug = this.$route.params.slug
+      this.getPost()
       next()
     },
     methods: {
-      getPost(slug) {
+      getApiUrl() {
+        return `${this.$store.state.apiUrl}?slug=${this.slug}&_embed`
+      },
+      getPost() {
         this.isLoading = true
-        axios.get(`${this.$store.state.apiUrl}?slug=${slug}`)
+        axios.get(this.getApiUrl())
           .then(res => {
             this.post = res.data[0]
           })
