@@ -13,14 +13,4 @@ window.Popper = Popper
 window.Vue = Vue
 // window.axios = axios
 
-// Vue Component
-import Example from './component/Example.vue'
-Vue.component('example-component', Example)
-
-// FIXME: SPA 用の js ファイルを別ファイルに切り出せないか？
-// Vue Single Page Application
-import WpPosts from './page/WpPosts.vue'
-Vue.component('wp-posts', WpPosts)
-
-// TODO: Add wordpress rest client components.
 // TODO: Add local blog components.

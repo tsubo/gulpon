@@ -9,9 +9,13 @@ const mode = process.env.NODE_MODE || 'development'
 module.exports = {
   mode: mode,
 
-  entry: ['./src/js/index.js', './src/sass/index.js'],
+  entry: {
+    bundle: ['./src/js/index.js', './src/sass/index.js'],
+    component: './src/js/component.js',
+    wpposts: ['./plugin/WpPosts/main.js'],
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'public/js'),
   },
 
@@ -53,7 +57,7 @@ module.exports = {
 
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '../css/bundle.css',
+      filename: '../css/[name].css',
     }),
     new VueLoaderPlugin(),
   ],
