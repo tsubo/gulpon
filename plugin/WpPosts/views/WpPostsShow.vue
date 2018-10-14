@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div id="wp-show">
     <template v-if="post">
-      <title-header :title="title" :description="description"></title-header>
-
-      <div class="container">
-        <hr>
-        <div v-html="content"></div>
-
-        <p><a class="btn btn-info btn-sm" :href="getApiUrl()">API</a></p>
+      <div class="mb-5">
+        <h1>{{ title }}</h1>
+        <p class="lead">{{ description }}</p>
       </div>
+      <hr>
+      <div v-html="content"></div>
+
+      <p><a class="btn btn-info btn-sm" :href="getApiUrl()">API</a></p>
     </template>
 
     <loading :active.sync="isLoading" color="white" background-color="black"></loading>
@@ -16,7 +16,6 @@
 </template>
 
 <script>
-  import TitleHeader from '../components/TitleHeader'
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
 
@@ -24,7 +23,6 @@
 
   export default {
     components: {
-      TitleHeader,
       Loading
     },
     data: () => {
@@ -81,3 +79,9 @@
   }
 </script>
 
+<style>
+#wp-show .lead {
+  color: gray;
+  font-size: 1.4rem;
+}
+</style>
