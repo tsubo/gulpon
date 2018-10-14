@@ -11,8 +11,7 @@ process.env.NODE_THEME =
 
 requireDir('./gulp/tasks', { recurse: true })
 
-// TODO: Add task for collection data(blog, news)
-gulp.task('build', ['html', 'webpack', 'img', 'file'], () => {
+gulp.task('build', ['html', 'webpack', 'collections', 'img', 'file'], () => {
   return
 })
 

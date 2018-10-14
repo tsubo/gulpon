@@ -6,7 +6,7 @@ gulp.task('reload', () => {
   brsync.reload()
 })
 
-gulp.task('server', ['default', 'watch'], () => {
+gulp.task('server', ['clean', 'watch'], () => {
   brsync.init({
     notify: false,
     server: config.path.destDir,

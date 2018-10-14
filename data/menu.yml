@@ -1,20 +1,22 @@
 menu:
   left: [
-    { type: link, path: /page1.html, label: Page1 },
+    { type: link, path: /page1.html, label: Page1 }
     { type: link, path: /page2.html, label: Page2 }
     { type: link, path: /md-format.html, label: MD Format }
     { type: link, path: /gallery.html, label: Gallery }
   ]
   right: [
+    { type: link, path: /blog, label: Blog }
+    { type: link, path: /news, label: News }
     {
       type: dropdown,
       label: Advanced,
       alignment: right,
       items: [
-        { type: link, path: /vue-sample/hello-vue.html, label: Hello Vue },
-        { type: link, path: /vue-sample/hello-vue-comp.html, label: Vue Component },
-        { type: divider },
-        { type: link, path: /vue-sample/wordpress/, label: Wordpress },
+        { type: link, path: /vue-sample/hello-vue.html, label: Hello Vue }
+        { type: link, path: /vue-sample/hello-vue-comp.html, label: Vue Component }
+        { type: divider }
+        { type: link, path: /vue-sample/wordpress, label: Wordpress }
       ]
     }
   ]

@@ -2,7 +2,6 @@ import VueRouter from 'vue-router'
 import WpPostsIndex from './views/WpPostsIndex'
 import WpPostsShow from './views/WpPostsShow'
 
-// FIXME: add catch all & show 404
 const routes = [
   {
     path: '/',

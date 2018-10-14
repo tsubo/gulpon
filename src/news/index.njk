@@ -1,0 +1,23 @@
+{% extends 'page.njk' %}
+
+{% set 'title' = 'News' %}
+{% set 'description' = 'An Example of Posts Plugin' %}
+
+{% block content %}
+  <div id="app">
+    <json-posts url="http://localhost:3000/collections/news.json" />
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script src="/js/json_posts.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app'
+    })
+  </script>
+{% endblock %}
+
+{% block style %}
+  <link rel="stylesheet" href="/css/json_posts.css">
+{% endblock %}

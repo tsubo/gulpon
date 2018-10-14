@@ -12,6 +12,7 @@ module.exports = {
   entry: {
     bundle: ['./src/js/index.js', './src/sass/index.js'],
     wpposts: ['./plugin/WpPosts/main.js'],
+    json_posts: ['./plugin/JsonPosts/main.js'],
   },
   output: {
     filename: '[name].js',

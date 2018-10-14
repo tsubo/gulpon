@@ -5,5 +5,6 @@ exports.path = {
   imgDir: './src/img',
   dataDir: './data',
   pluginDir: './plugin',
+  collectionsDir: './collections',
   destDir: './public',
 }
