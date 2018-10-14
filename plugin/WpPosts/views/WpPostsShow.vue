@@ -85,4 +85,8 @@
   color: gray;
   font-size: 1.4rem;
 }
+#wp-show img {
+  max-width: 100%;
+  height: auto;
+}
 </style>
