@@ -8,5 +8,5 @@ const util = require('../util')
 gulp.task('webpack', () => {
   return webpackStream(webpackConfig, webpack)
     .on('error', util.swallowError)
-    .pipe(gulp.dest(`${config.path.destDir}/js`))
+    .pipe(gulp.dest(`${config.path.assetsDir}/js`))
 })

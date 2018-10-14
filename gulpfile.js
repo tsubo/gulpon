@@ -11,7 +11,7 @@ process.env.NODE_THEME =
 
 requireDir('./gulp/tasks', { recurse: true })
 
-gulp.task('build', ['html', 'webpack', 'collections', 'img', 'file'], () => {
+gulp.task('build', ['html', 'webpack', 'collections', 'img'], () => {
   return
 })
 

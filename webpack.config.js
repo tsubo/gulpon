@@ -10,13 +10,13 @@ module.exports = {
   mode: mode,
 
   entry: {
-    bundle: ['./src/js/index.js', './src/sass/index.js'],
+    bundle: ['./src/assets/js/index.js', './src/assets/sass/index.js'],
     wpposts: ['./plugin/WpPosts/main.js'],
     json_posts: ['./plugin/JsonPosts/main.js'],
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'public/js'),
+    path: path.resolve(__dirname, 'public/assets/js'),
   },
 
   module: {
