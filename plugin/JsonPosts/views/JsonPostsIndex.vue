@@ -48,7 +48,10 @@
     },
     methods: {
       getPosts() {
-        // TODO: 一度呼んだらキャッシュすること
+        if (Object.keys(this.$store.state.posts).length > 0) {
+          return
+        }
+
         this.isLoading = true
         axios.get(this.$store.state.url)
           .then(res => {
