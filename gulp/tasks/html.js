@@ -10,6 +10,7 @@ const yaml = require('yamljs')
 const frontMatter = require('../plugin/front-matter')
 const markdown = require('../plugin/markdown')
 const nunjucks = require('../plugin/nunjucks')
+var merge = require('deepmerge')
 
 const getData = () => {
   let data = {}
@@ -22,7 +23,7 @@ const getData = () => {
 
   const mode = process.env.NODE_MODE || 'development'
   const modeData = data[mode]
-  data = { ...data, ...modeData }
+  data = merge(data, modeData)
 
   return data
 }
