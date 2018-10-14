@@ -13,12 +13,17 @@ const nunjucks = require('../plugin/nunjucks')
 
 const getData = () => {
   let data = {}
-  glob // yaml
-    .sync(`${config.path.dataDir}/**/*.{yml,yaml}`)
-    .forEach(file => (data = { ...data, ...yaml.load(file) }))
   glob // json
     .sync(`${config.path.dataDir}/**/*.json`)
     .forEach(file => (data = { ...data, ...require(file) }))
+  glob // yaml
+    .sync(`${config.path.dataDir}/**/*.{yml,yaml}`)
+    .forEach(file => (data = { ...data, ...yaml.load(file) }))
+
+  const mode = process.env.NODE_MODE || 'development'
+  const modeData = data[mode]
+  data = { ...data, ...modeData }
+
   return data
 }
 
