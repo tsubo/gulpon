@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import TitleHeader from '../component/TitleHeader'
+  import TitleHeader from '../components/TitleHeader'
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
 

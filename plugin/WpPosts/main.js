@@ -1,11 +1,3 @@
-import WpPosts from './page/WpPosts.vue'
+import App from './App.vue'
 
-export function install(Vue) {
-  Vue.component('wp-posts', WpPosts)
-}
-
-const plugin = {
-  install,
-}
-
-window.Vue.use(plugin)
+window.Vue.component('wp-posts', App)
