@@ -10,7 +10,7 @@ const yaml = require('yamljs')
 const frontMatter = require('../plugin/front-matter')
 const markdown = require('../plugin/markdown')
 const nunjucks = require('../plugin/nunjucks')
-var merge = require('deepmerge')
+const merge = require('deepmerge')
 
 const getData = () => {
   let data = {}
@@ -30,6 +30,7 @@ const getData = () => {
 
 // TODO: Add TOC parser
 // TODO: Add PWA
+// TODO: Add Sitemap
 gulp.task('html', () => {
   const data = getData()
 
