@@ -13,4 +13,9 @@ window.Popper = Popper
 window.Vue = Vue
 // window.axios = axios
 
+// vue components
+import Example from './component/Example.vue'
+
+Vue.component('example-component', Example)
+
 // TODO: Add local blog components.

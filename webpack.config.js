@@ -11,7 +11,6 @@ module.exports = {
 
   entry: {
     bundle: ['./src/js/index.js', './src/sass/index.js'],
-    component: './src/js/component.js',
     wpposts: ['./plugin/WpPosts/main.js'],
   },
   output: {
