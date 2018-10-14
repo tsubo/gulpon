@@ -12,6 +12,7 @@
         </div>
       </li>
     </ul>
+    <!-- TODO: ページネーション -->
 
     <p><a class="btn btn-info btn-sm" :href="$store.state.apiUrl">API</a></p>
 
@@ -46,6 +47,7 @@
     methods: {
       getPosts() {
         this.isLoading = true
+        // TODO: 一度呼んだらキャッシュすること
         axios.get(this.$store.state.apiUrl)
           .then(res => {
             this.posts = res.data

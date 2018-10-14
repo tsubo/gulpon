@@ -10,6 +10,7 @@
 
       <p><a class="btn btn-info btn-sm" :href="getApiUrl()">API</a></p>
     </template>
+    <!-- TODO: 前後のページへの移動ボタン -->
 
     <loading :active.sync="isLoading" color="white" background-color="black"></loading>
   </div>

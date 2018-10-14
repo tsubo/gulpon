@@ -3,6 +3,7 @@
     <template v-if="!isLoading">
       <ul class="list-unstyled">
         <li v-for="(post, key) in posts" :key="key" class="media my-4">
+          <!-- TODO: 将来の日付のものは表示しない -->
           <div class="media-body">
             <router-link :to="{ name: 'json-posts-show', params: { slug: key }}">
               <h4 class="mt-0 mb-1">
@@ -13,6 +14,7 @@
           </div>
         </li>
       </ul>
+      <!-- TODO: ページネーション -->
     </template>
 
     <p><a class="btn btn-info btn-sm" :href="$store.state.url">Json</a></p>
@@ -46,6 +48,7 @@
     },
     methods: {
       getPosts() {
+        // TODO: 一度呼んだらキャッシュすること
         this.isLoading = true
         axios.get(this.$store.state.url)
           .then(res => {

@@ -8,6 +8,7 @@
       <hr>
       <div v-html="post.contents"></div>
     </template>
+    <!-- TODO: 前後のページへの移動ボタン -->
   </div>
 </template>
 
