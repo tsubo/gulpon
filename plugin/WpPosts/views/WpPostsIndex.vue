@@ -32,25 +32,27 @@
     },
     data: () => {
       return {
-        posts: {},
         isLoading: false
       }
     },
-    filters: {
-      date: (str) => {
-        return str.replace(/-/g, '/').split('T')[0]
-      },
+    computed: {
+      posts() {
+        return this.$store.state.posts
+      }
     },
     created() {
       this.getPosts()
     },
     methods: {
       getPosts() {
+        if (Object.keys(this.$store.state.posts).length > 0) {
+          return
+        }
+
         this.isLoading = true
-        // TODO: 一度呼んだらキャッシュすること
         axios.get(this.$store.state.apiUrl)
           .then(res => {
-            this.posts = res.data
+            this.$store.commit('setPosts', res.data)
           })
           .catch(err => {
             console.log(err)
@@ -65,7 +67,12 @@
         }
         return str.substr(0, 200) + '...'
       }
-    }
+    },
+    filters: {
+      date: (str) => {
+        return str.replace(/-/g, '/').split('T')[0]
+      },
+    },
   }
 </script>
 
