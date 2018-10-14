@@ -4,6 +4,11 @@ const jdown = require('jdown')
 const fs = require('fs-extra')
 
 gulp.task('collections', () => {
+  let option = { spaces: '  ' }
+  if (process.env.NODE_MODE === 'production') {
+    option = {}
+  }
+
   jdown(config.path.collectionsDir)
     .then(contents => {
       for (key in contents) {
@@ -11,7 +16,7 @@ gulp.task('collections', () => {
         fs.outputJsonSync(
           `${config.path.destDir}/collections/${key}.json`,
           contents[key],
-          { spaces: '  ' },
+          option,
         )
       }
     })
