@@ -10,9 +10,10 @@ module.exports = {
   mode: mode,
 
   entry: {
-    bundle: ['./src/assets/js/index.js', './src/assets/sass/index.js'],
-    wpposts: ['./plugin/WpPosts/main.js'],
-    json_posts: ['./plugin/JsonPosts/main.js'],
+    bundle: [
+      './src/assets/js/index.js',
+      './src/assets/sass/index.js'
+    ],
   },
   output: {
     filename: '[name].js',

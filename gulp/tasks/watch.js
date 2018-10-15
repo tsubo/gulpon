@@ -10,9 +10,6 @@ gulp.task('watch', ['build'], () => {
     .watch(`${config.path.srcDir}/**/*.{js,css,scss,vue}`, ['webpack'])
     .on('error', util.swallowError)
   gulp
-    .watch(`${config.path.pluginDir}/**/*.{js,css,scss,vue}`, ['webpack'])
-    .on('error', util.swallowError)
-  gulp
     .watch(`${config.path.imgDir}/**/*`, ['img'])
     .on('error', util.swallowError)
   gulp
