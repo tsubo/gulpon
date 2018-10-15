@@ -8,6 +8,7 @@ menu:
   right: [
     { type: link, path: /blog, label: Blog }
     { type: link, path: /news, label: News }
+    { type: link, path: /wpnews, label: WordPress }
     {
       type: dropdown,
       label: Advanced,

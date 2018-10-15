@@ -16,21 +16,20 @@
 
     <p><a class="btn btn-info btn-sm" :href="$store.state.apiUrl">API</a></p>
 
-    <loading :active.sync="isLoading" color="white" background-color="black"></loading>
+    <loading :active.sync="isLoading" color="white" background-color="dimgray"></loading>
   </div>
 </template>
 
 <script>
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
-
-  const axios = require('axios')
+  import axios from 'axios'
 
   export default {
     components: {
       Loading
     },
-    data: () => {
+    data() {
       return {
         isLoading: false
       }

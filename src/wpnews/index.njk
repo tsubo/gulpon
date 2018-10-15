@@ -1,0 +1,20 @@
+{% extends 'page.njk' %}
+
+{% set 'title' = 'WordPress News' %}
+{% set 'description' = 'An example of using REST API.' %}
+
+{% block content %}
+  <div id="app">
+    {# <wp-posts-index url="https://ja.wordpress.org/wp-json/wp/v2/posts"> #}
+    <wp-posts-index url="https://wordpress.org/news/wp-json/wp/v2/posts">
+    </wp-posts-index>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var app = new Vue({
+      el: '#app',
+    })
+  </script>
+{% endblock %}

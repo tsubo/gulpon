@@ -1,0 +1,45 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+  <div id="app">
+    {% raw %}
+      <wp-posts-show v-bind:url="apiUrl">
+        <template slot-scope="{ post, description }">
+          <div id="title-header" class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-6">{{ post.title.rendered }}</h1>
+              <p class="lead">{{ description }}</p>
+            </div>
+          </div>
+
+          <div class="container">
+            <div v-html="post.content.rendered"></div>
+            <p><a class="btn btn-info btn-sm" :href="apiUrl">API</a></p>
+          </div>
+        </template>
+      </wp-posts-show>
+    {% endraw %}
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        {# baseUrl: 'https://ja.wordpress.org/wp-json/wp/v2/posts', #}
+        baseUrl: 'https://wordpress.org/news/wp-json/wp/v2/posts',
+        slug: ''
+      },
+      created() {
+        let urlParams = new URLSearchParams(window.location.search)
+        this.slug = urlParams.get('slug')
+      },
+      computed: {
+        apiUrl() {
+          return `${this.baseUrl}?slug=${this.slug}&_embed`
+        },
+      }
+    })
+  </script>
+{% endblock %}

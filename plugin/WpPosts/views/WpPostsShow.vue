@@ -12,21 +12,20 @@
     </template>
     <!-- TODO: 前後のページへの移動ボタン -->
 
-    <loading :active.sync="isLoading" color="white" background-color="black"></loading>
+    <loading :active.sync="isLoading" color="white" background-color="dimgray"></loading>
   </div>
 </template>
 
 <script>
   import Loading from 'vue-loading-overlay'
   import 'vue-loading-overlay/dist/vue-loading.css'
-
-  const axios = require('axios')
+  import axios from 'axios'
 
   export default {
     components: {
       Loading
     },
-    data: () => {
+    data() {
       return {
         slug: '',
         post: null,
