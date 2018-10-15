@@ -10,10 +10,7 @@ module.exports = {
   mode: mode,
 
   entry: {
-    bundle: [
-      './src/assets/js/index.js',
-      './src/assets/sass/index.js'
-    ],
+    bundle: ['./src/assets/js/index.js', './src/assets/sass/index.js'],
   },
   output: {
     filename: '[name].js',
@@ -53,6 +50,7 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
+      '@root': __dirname,
     },
   },
 
