@@ -5,7 +5,9 @@
 
 {% block content %}
   <div id="app">
-    <json-posts-index url="{{ site.url }}/collections/news/index.json">
+    <json-posts-index
+      api-url="{{ site.url }}/collections/news/index.json"
+      page-path="./page">
     </json-posts-index>
   </div>
 {% endblock %}

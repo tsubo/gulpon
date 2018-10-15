@@ -5,8 +5,9 @@
 
 {% block content %}
   <div id="app">
-    {# <wp-posts-index url="https://ja.wordpress.org/wp-json/wp/v2/posts"> #}
-    <wp-posts-index url="https://wordpress.org/news/wp-json/wp/v2/posts">
+    <wp-posts-index
+      api-url="https://wordpress.org/news/wp-json/wp/v2/posts"
+      page-path="./page">
     </wp-posts-index>
   </div>
 {% endblock %}

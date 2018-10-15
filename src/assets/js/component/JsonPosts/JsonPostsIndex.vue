@@ -17,7 +17,7 @@
       <!-- TODO: ページネーション -->
     </template>
 
-    <p><a class="btn btn-info btn-sm" :href="url">Json</a></p>
+    <p><a class="btn btn-info btn-sm" :href="apiUrl">Json</a></p>
 
     <loading :active.sync="isLoading" color="white" background-color="black"></loading>
   </div>
@@ -33,7 +33,11 @@
       Loading
     },
     props: {
-      url: {
+      apiUrl: {
+        type: String,
+        requred: true
+      },
+      pagePath: {
         type: String,
         requred: true
       }
@@ -50,7 +54,7 @@
     methods: {
       getPosts() {
         this.isLoading = true
-        axios.get(this.url)
+        axios.get(this.apiUrl)
           .then(res => {
             this.posts = res.data
           })
@@ -62,7 +66,7 @@
           })
       },
       pageUrl(slug) {
-        return `./page/?slug=${slug}`
+        return `${this.pagePath}/?slug=${slug}`
       },
       summary: (str) => {
         if (str.length <= 200) {
