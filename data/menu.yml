@@ -6,8 +6,8 @@ menu:
     { type: link, path: /gallery.html, label: Gallery }
   ]
   right: [
-    { type: link, path: /plugin-sample/blog, label: Blog }
-    { type: link, path: /plugin-sample/news, label: News }
+    { type: link, path: /blog, label: Blog }
+    { type: link, path: /news, label: News }
     {
       type: dropdown,
       label: Advanced,

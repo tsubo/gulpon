@@ -1,7 +1,7 @@
 <template>
   <div id="wp-show">
     <template v-if="post">
-      <div class="mb-5">
+      <div class="mb-4">
         <h1>{{ title }}</h1>
         <p class="lead">{{ description }}</p>
       </div>

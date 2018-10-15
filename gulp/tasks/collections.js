@@ -11,13 +11,20 @@ gulp.task('collections', () => {
 
   jdown(config.path.collectionsDir)
     .then(contents => {
-      for (key in contents) {
+      for (dirname in contents) {
         // TODO: 日付でソートすること
         fs.outputJsonSync(
-          `${config.path.destDir}/collections/${key}.json`,
-          contents[key],
+          `${config.path.destDir}/collections/${dirname}/index.json`,
+          contents[dirname],
           option,
         )
+        for (filename in contents[dirname]) {
+          fs.outputJsonSync(
+            `${config.path.destDir}/collections/${dirname}/${filename}.json`,
+            contents[dirname][filename],
+            option,
+          )
+        }
       }
     })
     .catch(err => console.log(err))

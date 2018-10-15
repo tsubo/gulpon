@@ -1,0 +1,45 @@
+{% extends 'base.njk' %}
+
+{% block content %}
+  <div id="app">
+    {% raw %}
+      <json-posts-show v-bind:url="apiUrl">
+        <template slot-scope="{ post, description }">
+          <div id="title-header" class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-6">{{ post.title }}</h1>
+              <p class="lead">{{ description }}</p>
+            </div>
+          </div>
+
+          <div class="container">
+            <div v-html="post.contents"></div>
+
+            <p><a class="btn btn-info btn-sm" v-bind:href="apiUrl">Json</a></p>
+          </div>
+        </template>
+      </json-posts-show>
+    {% endraw %}
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        baseUrl: '{{ site.url }}/collections/blog',
+        slug: ''
+      },
+      created() {
+        let urlParams = new URLSearchParams(window.location.search)
+        this.slug = urlParams.get('slug')
+      },
+      computed: {
+        apiUrl() {
+          return `${this.baseUrl}/${this.slug}.json`
+        },
+      }
+    })
+  </script>
+{% endblock %}

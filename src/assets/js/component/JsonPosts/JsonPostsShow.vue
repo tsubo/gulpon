@@ -3,12 +3,13 @@
     <template v-if="post">
       <slot :post="post" :description="description">
         <div class="mb-4">
-          <h1>{{ post.title.rendered }}</h1>
+          <h1>{{ post.title}}</h1>
           <p class="lead">{{ description }}</p>
         </div>
         <hr>
-        <div v-html="post.content.rendered"></div>
-        <p><a class="btn btn-info btn-sm" :href="url">API</a></p>
+        <div v-html="post.contents"></div>
+
+        <p><a class="btn btn-info btn-sm" :href="url">Json</a></p>
       </slot>
     </template>
     <!-- TODO: 前後のページへの移動ボタン -->
@@ -43,10 +44,7 @@ export default {
       if (!this.post) {
         return ''
       }
-      const date = this.post.date.replace(/-/g, '/').split('T')[0]
-      let authors = this.post._embedded.author.map((item) => item.name)
-      authors = authors.join(',')
-      return `${date} - ${authors}`
+      return this.post.date.replace(/-/g, '/').split('T')[0]
     },
   },
   created() {
@@ -57,7 +55,8 @@ export default {
       this.isLoading = true
       axios.get(this.url)
         .then(res => {
-          this.post = res.data[0]
+          this.post = res.data
+          console.log(this.post)
         })
         .catch(err => {
           console.log(err)

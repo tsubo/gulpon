@@ -5,7 +5,7 @@
         <li v-for="post in posts" :key="post.id" class="media my-4">
           {{ post.title.renderd }}
           <div class="media-body">
-            <a v-bind:href="pageUrl(post.slug)">
+            <a :href="pageUrl(post.slug)">
               <h4 class="mt-0 mb-1">
                 {{ post.title.rendered }}<span class="date"> - {{ post.date | date }}</span>
               </h4>
@@ -78,3 +78,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.date {
+  color: darkgray;
+  font-size: 1.4rem;
+}
+</style>

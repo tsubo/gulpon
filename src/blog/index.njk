@@ -5,20 +5,15 @@
 
 {% block content %}
   <div id="app">
-    <json-posts url="{{ site.url }}/collections/blog/index.json">
-    </json-posts>
+    <json-posts-index url="{{ site.url }}/collections/blog/index.json">
+    </json-posts-index>
   </div>
 {% endblock %}
 
 {% block script %}
-  <script src="/assets/js/json_posts.js"></script>
   <script>
     var app = new Vue({
-      el: '#app'
+      el: '#app',
     })
   </script>
-{% endblock %}
-
-{% block style %}
-  <link rel="stylesheet" href="/assets/css/json_posts.css">
 {% endblock %}
