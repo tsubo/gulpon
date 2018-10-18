@@ -6,8 +6,6 @@ menu:
     { type: link, path: /gallery.html, label: Gallery }
   ]
   right: [
-    { type: link, path: /blog, label: Blog }
-    { type: link, path: /news, label: News }
     {
       type: dropdown,
       label: Advanced,
@@ -16,7 +14,8 @@ menu:
         { type: link, path: /vue-sample/hello-vue.html, label: Hello Vue }
         { type: link, path: /vue-sample/hello-vue-comp.html, label: Vue Component }
         { type: divider }
-        { type: link, path: /wpnews, label: WordPress }
+        { type: link, path: /blog, label: Blog }
+        { type: link, path: /news, label: News }
       ]
     }
   ]

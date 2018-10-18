@@ -15,13 +15,9 @@ window.axios = axios
 
 // vue components
 import Example from './component/Example.vue'
-import WpPostsIndex from './component/WpPosts/WpPostsIndex.vue'
-import WpPostsShow from './component/WpPosts/WpPostsShow.vue'
 import JsonPostsIndex from './component/JsonPosts/JsonPostsIndex.vue'
 import JsonPostsShow from './component/JsonPosts/JsonPostsShow.vue'
 
 Vue.component('example-component', Example)
-Vue.component('wp-posts-index', WpPostsIndex)
-Vue.component('wp-posts-show', WpPostsShow)
 Vue.component('json-posts-index', JsonPostsIndex)
 Vue.component('json-posts-show', JsonPostsShow)
