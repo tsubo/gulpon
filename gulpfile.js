@@ -1,5 +1,4 @@
 const gulp = require('gulp')
-const runSequence = require('run-sequence')
 const requireDir = require('require-dir')
 const yaml = require('yamljs')
 
@@ -11,10 +10,5 @@ process.env.NODE_THEME =
 
 requireDir('./gulp/tasks', { recurse: true })
 
-gulp.task('build', ['html', 'webpack', 'collections', 'img'], () => {
-  return
-})
-
-gulp.task('default', () => {
-  runSequence('clean', 'build')
-})
+gulp.task('build', ['clean', 'html', 'webpack', 'collections', 'img'])
+gulp.task('default', ['build'])

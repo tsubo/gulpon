@@ -31,35 +31,35 @@ const getData = () => {
 // TODO: Add TOC parser
 // TODO: Add PWA
 // TODO: Add Sitemap
-gulp.task('html', () => {
+gulp.task('html', ['clean'], () => {
   const data = getData()
 
   return gulp
     .src([`${config.path.srcDir}/**/*.{html,njk,md}`])
     .pipe(
       plumber({
-        errorHandler: util.errorHandler,
-      }),
+        errorHandler: util.errorHandler
+      })
     )
     .pipe(frontMatter())
     .pipe(
       gulpData(file => {
         // Inject data from yaml or json files
         return data
-      }),
+      })
     )
     .pipe(markdown())
     .pipe(nunjucks())
     .pipe(
       beautify({
         indent_size: 2,
-        preserve_newlines: false,
-      }),
+        preserve_newlines: false
+      })
     )
     .pipe(
       rename({
-        extname: '.html',
-      }),
+        extname: '.html'
+      })
     )
     .pipe(gulp.dest(config.path.destDir))
 })

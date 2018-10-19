@@ -3,30 +3,31 @@ const gulp = require('gulp')
 const jdown = require('jdown')
 const fs = require('fs-extra')
 
-gulp.task('collections', () => {
+gulp.task('collections', ['clean'], () => {
   let option = { spaces: '  ' }
   if (process.env.NODE_MODE === 'production') {
     option = {}
   }
 
-  jdown(config.path.collectionsDir)
+  return jdown(config.path.collectionsDir)
     .then(contents => {
       for (dirname in contents) {
         // TODO: 日付でソートすること
         fs.outputJsonSync(
           `${config.path.destDir}/collections/${dirname}/index.json`,
           contents[dirname],
-          option,
+          option
         )
         for (filename in contents[dirname]) {
           fs.outputJsonSync(
             `${config.path.destDir}/collections/${dirname}/${filename}.json`,
             contents[dirname][filename],
-            option,
+            option
           )
         }
       }
     })
-    .catch(err => console.log(err))
-  return
+    .catch(err => {
+      console.log(err)
+    })
 })
