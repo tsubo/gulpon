@@ -21,20 +21,21 @@ gulpon/
 │   └── site.yml        site deta
 │
 ├── src/                you'r contents
-│   ├── css
-│   ├── sass
-│   ├── img
-│   ├── js
+│   ├── assets/
+│   │   ├── img/
+│   │   ├── js/
+│   │   └── sass/
 │   │
-│   ├── index.njk       pages written in nunjucks template
-│   └── some_page.njk   https://mozilla.github.io/nunjucks/
+│   ├── some_page.njk   page written in nunjucks template
+│   └── some_page.md    page written in markdown
 │
 ├── template/           layout or parcial templates
+├── theme/              theme templates
 │
 └── gulpfile.js         task runner
 ```
 
-The /src directory contains the actual contents of your site. This is where all of your site's pages, CSS, Javascript, images, etc. will be kept.kk
+The /src directory contains the actual contents of your site. This is where all of your site's pages, CSS, Javascript, images, etc. will be kept.
 
 Gulpon will generate your static HTML and place it in the /public directory.
 
@@ -47,5 +48,5 @@ npm run build
 ## Previewing with Browsersync
 
 ```
-npm run server
+npm run serve
 ```
