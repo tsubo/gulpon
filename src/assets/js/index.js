@@ -1,13 +1,12 @@
 // javascript
 import Popper from 'popper.js'
 import jQuery from 'jquery'
-import hljs from 'highlight.js/lib/index'
 import axios from 'axios'
 import Vue from 'vue'
 import 'bootstrap'
+import './highlight'
 import './site'
 
-window.hljs = hljs
 window.$ = window.jQuery = jQuery
 window.Popper = Popper
 window.Vue = Vue
