@@ -1,25 +1,11 @@
-{% extends 'base.njk' %}
+{% extends 'page.njk' %}
+
+{% set 'title' = 'Blog' %}
+{% set 'description' = 'An Example of JsonPostsShow Component' %}
 
 {% block content %}
   <div id="app">
-    {% raw %}
-      <json-posts-show v-bind:url="apiUrl">
-        <template slot-scope="{ post, description }">
-          <div id="title-header" class="jumbotron jumbotron-fluid">
-            <div class="container">
-              <h1 class="display-6">{{ post.title }}</h1>
-              <p class="lead">{{ description }}</p>
-            </div>
-          </div>
-
-          <div class="container">
-            <div v-html="post.contents"></div>
-
-            <p><a class="btn btn-info btn-sm" v-bind:href="apiUrl">Json</a></p>
-          </div>
-        </template>
-      </json-posts-show>
-    {% endraw %}
+    <json-posts-show v-bind:url="apiUrl"></json-posts-show>
   </div>
 {% endblock %}
 
