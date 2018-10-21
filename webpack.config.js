@@ -80,6 +80,6 @@ module.exports = {
   stats: {
     modules: false,
     moduleTrace: false,
-    children: false
+    children: false,
   },
 }
