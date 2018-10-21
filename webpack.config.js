@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const mode = process.env.NODE_MODE || 'development'
+const cwd = process.cwd()
 
 module.exports = {
   mode: mode,
@@ -14,7 +15,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'public/assets/js'),
+    path: path.resolve(cwd, 'public/assets/js'),
   },
 
   module: {

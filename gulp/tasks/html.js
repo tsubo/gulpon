@@ -24,8 +24,10 @@ function getData() {
     .forEach(file => (data = { ...data, ...yaml.load(file) }))
 
   const mode = process.env.NODE_MODE || 'development'
-  const modeData = data[mode]
-  data = merge(data, modeData)
+  if (data[mode]) {
+    const modeData = data[mode]
+    data = merge(data, modeData)
+  }
 
   return data
 }
