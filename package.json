@@ -1,5 +1,5 @@
 {
-  "name": "@tsubo/gulpon",
+  "name": "gulpon",
   "version": "1.0.0",
   "description": "A Flexible Static Site Generator",
   "author": "tsubo",
