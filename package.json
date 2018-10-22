@@ -45,7 +45,6 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "plugin-error": "^1.0.1",
     "popper.js": "^1.14.4",
-    "require-dir": "^1.1.0",
     "sass-loader": "^7.1.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "vue": "^2.5.17",
