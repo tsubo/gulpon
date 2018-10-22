@@ -5,9 +5,10 @@ A Flexible Static Site Generator.
 ## Install
 
 ```
-git clone https://github.com/tsubo/gulpon.git
-cd gulpon
-npm install
+npm install gulpon-cli -g
+gulpon init my-site
+cd my-site
+gulpon serve
 ```
 
 ## Directory Structure
@@ -42,11 +43,11 @@ Gulpon will generate your static HTML and place it in the /public directory.
 ## Build
 
 ```
-npm run build
+gulpon build
 ```
 
 ## Previewing with Browsersync
 
 ```
-npm run serve
+gulpon serve
 ```
