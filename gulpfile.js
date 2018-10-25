@@ -30,10 +30,10 @@ function script() {
           modules: false,
           moduleTrace: false,
           children: false,
-        }),
+        })
       )
       resolve()
-    }),
+    })
   )
 }
 
@@ -58,7 +58,7 @@ function watch_dest(callback) {
 const build = gulp.series(clean, gulp.parallel(html, script, collections, img))
 const serve = gulp.series(build, watch_src, watch_dest)
 
-exports.clean = clean
+exports.clean = gulp.series(clean)
 exports.serve = serve
 exports.build = build
 exports.default = build
