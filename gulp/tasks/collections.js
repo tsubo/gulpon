@@ -3,6 +3,26 @@ const fs = require('fs-extra')
 
 const paths = require('../common').paths
 
+function objectToArray(collectionObject) {
+  return Object.entries(collectionObject)
+}
+
+function arrayToObject(collectionArray) {
+  const obj = collectionArray.reduce((accumulator, currentValue) => {
+    accumulator[currentValue[0]] = currentValue[1]
+    return accumulator
+  }, {})
+  return obj
+}
+
+function orderByDateDesc(collectionObject) {
+  let collectionArray = objectToArray(collectionObject)
+  collectionArray.sort((a, b) => {
+    return b[1].date - a[1].date
+  })
+  return arrayToObject(collectionArray)
+}
+
 function collections() {
   let option = { spaces: '  ' }
   if (process.env.NODE_MODE === 'production') {
@@ -12,17 +32,16 @@ function collections() {
   return jdown(paths.collections.src)
     .then(contents => {
       for (dirname in contents) {
-        // TODO: 日付でソートすること
         fs.outputJsonSync(
           `${paths.collections.dest}/${dirname}/index.json`,
-          contents[dirname],
-          option,
+          orderByDateDesc(contents[dirname]),
+          option
         )
         for (filename in contents[dirname]) {
           fs.outputJsonSync(
             `${paths.collections.dest}/${dirname}/${filename}.json`,
             contents[dirname][filename],
-            option,
+            option
           )
         }
       }
