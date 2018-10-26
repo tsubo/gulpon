@@ -31,9 +31,7 @@ gulpon/
 │   └── some_page.md    page written in markdown
 │
 ├── template/           layout or parcial templates
-├── theme/              theme templates
-│
-└── gulpfile.js         task runner
+└── theme/              theme templates
 ```
 
 The /src directory contains the actual contents of your site. This is where all of your site's pages, CSS, Javascript, images, etc. will be kept.
